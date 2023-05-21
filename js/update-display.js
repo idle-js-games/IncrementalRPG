@@ -88,9 +88,9 @@ function initDisplay() {
         let obj = eval(resource[r]);
 
         if (obj.clickIncrement) {
-            var clickHTML = `<button class="btn btn-primary btn-block" onmousedown="clickIncrement(resource.${obj.slug})">${obj.action} <span id="${obj.slug}-click-increment"></span> ${obj.name}</button>`;
+            var clickHTML = `<button style="height:40px" class="btn btn-primary btn-block" onmousedown="clickIncrement(this,resource.${obj.slug})"><image class="icon" src="${obj.icon_path}" /> ${obj.action} <span id="${obj.slug}-click-increment"></span> ${obj.name} </button>`;
         } else {
-            var clickHTML = `<button class="btn btn-default btn-block disabled">${obj.name}</button>`;
+            var clickHTML = `<button style="height:40px" class="btn btn-default btn-block disabled"><image class="icon" src="${obj.icon_path}" /> ${obj.name}</button>`;
         }
 
         if (resource[r].cost !== 'undefined') {
@@ -134,10 +134,10 @@ function initDisplay() {
         let storageStr = `
         <div class="row">
             <div class="col-xs-4">
-                <button class="btn btn-danger btn-block" onmousedown="addStorage(resource.${obj.slug})">Build ${obj.name} Storage</button>
+                <button style="height:40px" class="btn btn-danger btn-block" onmousedown="addStorage(resource.${obj.slug})">Build ${obj.name} Storage</button>
             </div>
             <div class="col-xs-4">
-                <button id="${obj.slug}-storage-total" class="btn btn-default btn-block disabled">0</button>
+                <button style="height:40px" id="${obj.slug}-storage-total" class="btn btn-default btn-block disabled">0</button>
             </div>
             <div class="col-xs-4">
                 <h6>| ${costStr}<h6>+${obj.storage.max} ${obj.name} Storage</h6>
@@ -161,10 +161,10 @@ function initDisplay() {
         let workerStr = `
         <div class="row">
             <div class="col-xs-4">
-                <button class="btn btn-block btn-success" onmousedown="buyWorker(workers.${obj.slug})">Create ${obj.name}</button>
+                <button style="height:40px" class="btn btn-block btn-success" onclick="addBox(this, '${obj.slug}','${obj.icon_resource == null ? obj.icon_path : obj.icon_resource}')" onmousedown="buyWorker(workers.${obj.slug})"><image class="icon" src="${obj.icon_path}" /> Create ${obj.name}</button>
             </div>
             <div class="col-xs-4">
-                <button id="${obj.slug}-total" class="btn btn-block btn-default disabled"></button>
+                <button style="height:40px" id="${obj.slug}-total" class="btn btn-block btn-default disabled"></button>
             </div>
             <div class="col-xs-4">
                 <h6>| ${costStr} </h6>
@@ -189,10 +189,10 @@ function initDisplay() {
         var buildingStr = `
         <div class="row">
             <div class="col-xs-4">
-                <button id="${obj.slug}-build" class="btn btn-danger btn-block" onmousedown="buyBuilding(buildings.${obj.slug})">Build ${obj.name}</button>
+                <button id="${obj.slug}-build" style="height:40px" class="btn btn-danger btn-block" onmousedown="buyBuilding(buildings.${obj.slug})"><image class="icon" src="${obj.icon_path}" /> Build ${obj.name}</button>
             </div>
             <div class="col-xs-4">
-                <button id="${obj.slug}-total" class="btn btn-default btn-block disabled"></button>
+                <button id="${obj.slug}-total" style="height:40px" class="btn btn-default btn-block disabled"></button>
             </div>
             <div class="col-xs-4">
                 <h6>${costStr}</h6>
@@ -218,6 +218,6 @@ function colorText(cost, resource, elem) {
     if (cost > resource) {
         elem.style.color = 'red';
     } else {
-        elem.style.color = 'black';
+        elem.style.color = '#8fde8f';
     }
 }

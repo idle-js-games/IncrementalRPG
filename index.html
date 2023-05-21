@@ -2,30 +2,63 @@
 <html>
 
 <head>
-    <title>Incremental RPG</title>
+    <title>Incremental RPG </title>
 
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+    <!-- link rel="stylesheet" type="text/css" href="css/bootstrap.css" -->
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="css/flat-ui.css" type="text/css" />
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Latest compiled and minified Bootstrap JavaScript -->
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/flat-ui.css" type="text/css" />
+
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="shortcut icon" href="favicon.ico">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-47311210-3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
 
-        gtag('config', 'UA-47311210-3');
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-76312005-2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-76312005-2');
     </script>
+
+
 </head>
 
-<body>
+
+
+<body class="background-gray">
     <!-- Modal -->
-    <div class="modal fade" id="onLoadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="onLoadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div style="background-color: #333;" class="modal-content">
                 <div class="modal-header">
-                    <button class="close" data-dismiss="modal" aria-hidden="true" onmousedown='return false;'>&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onmousedown="return false;">×</button>
                     <h4 class="modal-title" id="myModalLabel">Welcome to Incremental RPG!</h4>
                 </div>
                 <div class="modal-body">
@@ -38,24 +71,72 @@
                     <input class="form-control" id="mayor" type="text">
                 </div>
                 <div class="modal-footer">
-                    <button id="modalClose" class="btn btn-success" data-dismiss="modal" onmousedown='return false;'>Done</button>
+                    <button type="button" id="modalClose" class="btn btn-success" data-dismiss="modal" onmousedown="return false;">Done</button>
                 </div>
             </div>
         </div>
     </div>
     <div class="row header">
         <div class="col-md-12">
-            <h1>Incremental RPG
+            <h1>Incremental RPG <image class="icon-64" src="img/images/IconPack_24.png" />
                 <small id="version-number"></small>
+
             </h1>
+
+            <br/>
+            <br/>
+                              <h4>Game made by: samuelbeard  - more info at <a target="
+                                 "href="https://github.com/idle-js-games/IncrementalRPG">IncrementalRPG</a></h4>
+                              <br/>
+                              <h4>And Improved by Romulolink</h4>
+                              <br/>
+                              <h4>Icons provided by <a target="
+                                 "href="https://www.flaticon.com/">Flaticon</a></h4>
+                              <br/>
         </div>
     </div>
+
+    <div class="row">
+        <div style="margin-left:200px; text-align:center;" class="col-md-6">
+            <h2>
+                <span id="townName"></span>
+            </h2>
+            <h3>
+                <small>Our Beloved Mayor:</small>
+                <span id="mayorName"></span>
+                <h6 id='autosave'>Auto-Saving in 0</h6>
+                 <button class="btn btn-danger" onclick="saveGame()">Save Game</button>
+            </h3>
+
+
+
+
+        </div>
+    </div>
+
     <div class="container">
         <div class="row">
             <div class="col-md-7">
+
+                <hr>
+                <div class="alert alert-info alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onmousedown="return false;">x</button>
+                    <p>Use the resources you have gathered to build some accommodation so that you can hire workers.</p>
+                    <p>Some buildings need to be researched before you are able to build them.</p>
+                </div>
+
                 <div id="resources"></div>
             </div>
+
             <div class="col-md-5">
+
+
+             <hr>
+                 <div class="alert alert-info alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onmousedown="return false;">x</button>
+                    <p>Click the buttons below to create workers who will gather resources for you. You will need somewhere for them to live first though.</p>
+                </div>
+
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="btn-group btn-group-justified">
@@ -71,20 +152,37 @@
                     </div>
                 </div>
 
+
+
                 <div id="workers"></div>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-6">
-                <hr>
+                    <hr>
+                <div class="alert alert-info alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onmousedown="return false;">x</button>
+                    <p>Use the resources you have gathered to build some accommodation so that you can hire workers.</p>
+                    <p>Some buildings need to be researched before you are able to build them.</p>
+                </div>
                 <div id="buildings"></div>
                 <hr>
+
+                 <div class="alert alert-info alert-dismissable" style="margin-top:15px;">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onmousedown="return false;">x</button>
+                    <p>Build storage houses to store more resources.</p>
+                </div>
                 <div id="storage-buttons"></div>
             </div>
 
             <div class="col-md-6">
-                <hr>
+                    <hr>
+
+                 <div class="alert alert-info alert-dismissable" style="margin-top:15px;">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onmousedown="return false;">x</button>
+                    <p>By Upgrades to increase the production.</p>
+                </div>
                 <div class="row" id="upgrade-two-axes">
                     <div class="col-xs-4">
                         <button id="twoAxes-name" class="btn btn-warning btn-block" onmousedown="clickIncrementUpgrade(resource.wood, 2, upgrades.twoAxes)"></button>
@@ -190,7 +288,7 @@
         <div class="row">
             <div class="col-md-6">
                 <hr>
-                <div class="well">
+                <div class="progress-content">
                     <h3>Information</h3>
                     <div id="message-info" class="info"></div>
                 </div>
@@ -198,7 +296,7 @@
 
             <div class="col-md-6">
                 <hr>
-                <div class="well">
+                <div class="progress-content">
                     <h3>Upgrades</h3>
                     <div id="message-upgrades" class="info"></div>
                 </div>
@@ -207,11 +305,11 @@
 
         <div class="row">
             <div class="col-md-12">
-                <div id="dev-buttons" class="hidden">
-                    <button onclick="saveGame()">Save</button>
-                    <button onclick="clearLocalStorage()">Clear Local Storage</button>
-                    <button onclick="maxEverything()">Max Everything</button>
-                    <button onclick="upStorage()">Up Storage</button>
+                <div id="dev-buttons" class="hiddenshow">
+                    <button class="btn btn-warning" onclick="saveGame()">Save</button>
+                    <button class="btn btn-warning" onclick="clearLocalStorage()">Clear Local Storage</button>
+                    <button class="btn btn-warning" onclick="maxEverything()">Max Everything</button>
+                    <button class="btn btn-warning" onclick="upStorage()">Up Storage</button>
                 </div>
             </div>
         </div>
@@ -224,12 +322,15 @@
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <!--Game Scripts-->
     <script src="js/variables.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/sound.js"></script>
     <script src="js/update-display.js"></script>
     <script src="js/game.js"></script>
     <script src="js/upgrades.js"></script>
     <script src="js/save-load.js"></script>
     <script src="js/messages.js"></script>
     <script src="js/dev.js"></script>
+    <script src="js/box_effect.js"></script>
 </body>
 
 </html>
