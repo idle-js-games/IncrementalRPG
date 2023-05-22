@@ -9,6 +9,8 @@ window.onload = function() {
     initDisplay();
 };
 
+
+
 /*
  * Increments Resources
  */
@@ -23,6 +25,21 @@ function tick() {
         }
     }
 }
+
+
+    function forceUpdateSave(){
+
+        lastSave = new Date().toLocaleString();
+        timer = 0;
+    }
+
+
+
+// Display the correct values.
+    function updateValues() {
+        
+        document.getElementById("autosave").innerHTML = "Auto-Saving in " + timer + " Last Save: " + lastSave;
+    }
 
 /*
  * Calculation Functions
@@ -82,6 +99,47 @@ Calc = {
  * x - object = The resource object.
  * i - number = The amount to increase the total by.
  */
+function increaseResourceTotalEffect(ui_element, x, i) {
+    newValue = x.total + i;
+
+    // Check if the resource has a cost and manage that.
+    if (typeof x.cost !== 'undefined') {
+        for (c in x.cost) {
+            let obj = eval(resource[c]);
+            let costNum = eval(x.cost[c]);
+            let newValueOfCost = obj.total - costNum;
+            if (newValueOfCost >= 0) {
+                obj.total -= costNum;
+                
+                console.log("coletando recursos " + x.slug);
+                addBox(ui_element, x.slug, x.icon_resource == null ? x.icon_path : x.icon_resource);  
+                playSound(x.slug);
+
+            } else {
+
+                return;
+            }
+        }
+    }
+
+    if (newValue < x.max) {
+        x.total += i;
+        addBox(ui_element, x.slug, x.icon_resource == null ? x.icon_path : x.icon_resource);  
+        playSound(x.slug);
+        increaseChanceResources(x, i);
+        return true;
+    } else {
+        x.total = x.max;
+        return false;
+    }
+}
+
+
+/* TODO: REWRITE THIS FUNCTION TO RETURN TRUE OR FALSE & PUT IT IN Calc
+ * Increase a Resource Total
+ * x - object = The resource object.
+ * i - number = The amount to increase the total by.
+ */
 function increaseResourceTotal(x, i) {
     newValue = x.total + i;
 
@@ -93,14 +151,16 @@ function increaseResourceTotal(x, i) {
             let newValueOfCost = obj.total - costNum;
             if (newValueOfCost >= 0) {
                 obj.total -= costNum;
+               
             } else {
+
                 return;
             }
         }
     }
 
     if (newValue < x.max) {
-        x.total += i;
+        x.total += i;        
         increaseChanceResources(x, i);
         return true;
     } else {
@@ -114,8 +174,8 @@ function increaseResourceTotal(x, i) {
  * Initiated from the DOM
  * x - object = The resource object.
  */
-function clickIncrement(x) {
-    increaseResourceTotal(x, x.clickIncrement);
+function clickIncrement(ui_element,x) {
+    increaseResourceTotalEffect(ui_element,x, x.clickIncrement);  
 }
 
 /*

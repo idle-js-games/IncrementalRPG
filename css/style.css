@@ -44,4 +44,57 @@ h6 {
 
 .well {
     padding-top: 0;
+    background-color: #444;
 }
+
+
+.icon {
+
+  width: 24px;
+  height: 24px;
+}
+
+
+.icon-36 {
+
+  width: 36px;
+  height: 36px;
+}
+
+
+.icon-64 {
+
+  width:64px;
+  height:64px;
+}
+
+.progress-content{
+
+    background-color: #555;
+    padding: 30px;
+}
+
+
+    .background-gray {
+      background-color: #333;
+    }
+
+    .background-image {
+      background-image: url("img/bg2.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .box {
+      position: relative;
+      border: 1px solid #ccc;
+      padding: 5px;
+      margin-bottom: -5px;
+      margin-left:100px;
+      opacity: 1;
+      transition: opacity 0.5s, top 0.5s;
+      background-color: #a49388;
+      width: 70px;
+      z-index: 1;
+
+    }

@@ -1,3 +1,7 @@
+var timer = 10;
+var lastSave;
+
+
 var meta = {
     devmode: false,
     versionNumber: 'alpha 0.10.2',
@@ -18,6 +22,10 @@ var resource = {
         clickIncrement: 1,
         autoIncrement: 0,
         chanceIncrement: 1,
+        icon_path: 'img/images/IconPack_01.png',
+        icon_resource: 'img/images/IconPack_11.png',
+        time_to_craft: 3,
+        time_to_test: 33,
         max: 100,
         storage: {
             total: 1,
@@ -38,6 +46,7 @@ var resource = {
         clickIncrement: 1,
         autoIncrement: 0,
         chanceIncrement: 1,
+        icon_path: 'img/images/IconPack_10.png',
         max: 100,
         storage: {
             total: 1,
@@ -62,6 +71,7 @@ var resource = {
         action: 'Make',
         total: 0,
         clickIncrement: 1,
+        icon_path: 'img/images/IconPack_05.png',
         autoIncrement: 0,
         max: 100,
         cost: {
@@ -85,6 +95,7 @@ var resource = {
         clickIncrement: 1,
         autoIncrement: 0,
         chanceIncrement: 1,
+        icon_path: 'img/images/IconPack_06.png',
         max: 100,
         storage: {
             total: 1,
@@ -105,6 +116,7 @@ var resource = {
         clickIncrement: 1,
         autoIncrement: 0,
         max: 0,
+        icon_path: 'img/images/IconPack_14.png',
         storage: {
             total: 0,
             max: 500,
@@ -124,6 +136,7 @@ var resource = {
         autoIncrement: 0,
         chanceIncrement: 1,
         max: 100,
+        icon_path: 'img/images/IconPack_13.png',
         cost: {
             wheat: 4
         },
@@ -145,6 +158,7 @@ var resource = {
         autoIncrement: 0,
         chanceIncrement: 1,
         max: 50,
+        icon_path: 'img/images/IconPack_12.png',
         storage: {
             total: 1,
             max: 50,
@@ -163,6 +177,7 @@ var resource = {
         clickIncrement: 1,
         autoIncrement: 0,
         max: 100,
+        icon_path: 'img/images/IconPack_12.png',
         cost: {
             skin: 2
         },
@@ -183,6 +198,7 @@ var resource = {
         autoIncrement: 0,
         chanceIncrement: 1,
         max: 100,
+        icon_path: 'img/images/IconPack_02.png',
         storage: {
             total: 1,
             max: 100,
@@ -201,6 +217,7 @@ var resource = {
         autoIncrement: 0,
         chanceIncrement: 1,
         max: 100,
+        icon_path: 'img/images/IconPack_03.png',
         storage: {
             total: 1,
             max: 100,
@@ -220,6 +237,7 @@ var resource = {
         autoIncrement: 0,
         chanceIncrement: 1,
         max: 100,
+        icon_path: 'img/images/IconPack_04.png',
         storage: {
             total: 1,
             max: 100,
@@ -240,6 +258,7 @@ var workers = {
         description: 'A person who likes to chop wood.',
         resource: 'wood',
         total: 0,
+        icon_path: 'img/images/IconPack_07.png',
         autoIncrement: 1,
         cost: {
             meat: 10
@@ -252,6 +271,7 @@ var workers = {
         description: 'Not a young person.',
         resource: 'stone',
         total: 0,
+        icon_path: 'img/images/IconPack_15.png',
         autoIncrement: 1,
         cost: {
             meat: 10
@@ -264,6 +284,7 @@ var workers = {
         description: 'The opposite to a gatherer.',
         resource: 'meat',
         total: 0,
+        icon_path: 'img/images/IconPack_09.png',
         autoIncrement: 1,
         cost: {
             meat: 10
@@ -281,6 +302,7 @@ var workers = {
         resource: 'brick',
         total: 0,
         autoIncrement: 1,
+        icon_path: 'img/images/IconPack_08.png',
         cost: {
             meat: 10,
             stone: 1
@@ -294,6 +316,7 @@ var workers = {
         resource: 'leather',
         total: 0,
         autoIncrement: 1,
+        icon_path: 'img/images/IconPack_16.png',
         cost: {
             meat: 10,
             bread: 10
@@ -307,6 +330,7 @@ var workers = {
         resource: 'wheat',
         total: 0,
         autoIncrement: 2,
+        icon_path: 'img/images/IconPack_20.png',
         cost: {
             meat: 15,
             wheat: 10
@@ -320,6 +344,7 @@ var workers = {
         resource: 'bread',
         total: 0,
         autoIncrement: 1,
+        icon_path: 'img/images/IconPack_21.png',
         cost: {
             meat: 10
         },
@@ -334,6 +359,7 @@ var buildings = {
         description: 'Just like a house but way smaller and made out of fabric.',
         total: 0,
         residents: 1,
+        icon_path: 'img/images/IconPack_17.png',
         cost: {
             wood: 30
         },
@@ -345,6 +371,7 @@ var buildings = {
         description: 'Just like a tent but way bigger and not made out of fabric.',
         total: 0,
         residents: 4,
+        icon_path: 'img/images/IconPack_18.png',
         cost: {
             wood: 75,
             stone: 10,
@@ -359,6 +386,7 @@ var buildings = {
         description: 'A bit like a house but not as nice and not as private.',
         total: 0,
         residents: 10,
+        icon_path: 'img/images/IconPack_19.png',
         cost: {
             wood: 200,
             stone: 30,
